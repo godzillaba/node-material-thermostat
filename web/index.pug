@@ -1,0 +1,79 @@
+html(lang='en')
+    head
+        link(rel='stylesheet', href='http://fonts.googleapis.com/icon?family=Material+Icons')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css')
+        link(rel='stylesheet/less', href='/client.less')
+
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js')
+        script.
+            less = {
+                env: "development"
+            }
+
+
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+    body(ng-app='app', ng-controller='appController as vm', ng-cloak='')
+
+        nav.blue
+            .nav-wrapper.row
+                .col.s12
+                    a.brand-logo(href='') NHC
+                    ul.right.hide-on-med-and-down
+                        li
+                            a(href='http://github.com/c0depizza') #[i(class='material-icons') code]
+
+        .container
+            .row
+                .col.s12.m6
+                    .card
+                        .card-content
+                            span.card-title Current Temperature
+                            h1.temperature-text {{ vm.state.currentTemp || "--" }}
+                .col.s12.m6
+                    .card
+                        .card-content
+                            span.card-title Target Temperature
+
+                            #target-temp-stepper
+
+                                button.btn-flat.waves-effect.waves-teal(ng-click='vm.stepTarget(-1)')
+                                    i.material-icons chevron_left
+
+                                h1.temperature-text(style='display: inline-block').
+                                    {{ vm.state.targetTemp || "--" }}
+
+                                button.btn-flat.waves-effect.waves-teal(ng-click='vm.stepTarget(1)')
+                                    i.material-icons chevron_right
+
+
+            .row
+                .col.s12.m4
+                    .card
+                        .card-content
+                            span.card-title HVAC Mode
+                            p
+                                input(name='hvac-mode-group', type='radio', id='hvac-auto',
+                                ng-model='vm.state.hvacMode', ng-change='vm.publishState()', value='auto')
+                                label(for='hvac-auto') Auto
+                            p
+                                input(name='hvac-mode-group', type='radio', id='hvac-cool',
+                                ng-model='vm.state.hvacMode', ng-change='vm.publishState()', value='cool')
+                                label(for='hvac-cool') Cool
+                            p
+                                input(name='hvac-mode-group', type='radio', id='hvac-heat',
+                                ng-model='vm.state.hvacMode', ng-change='vm.publishState()', value='heat')
+                                label(for='hvac-heat') Heat
+                            p
+                                input(name='hvac-mode-group', type='radio', id='hvac-off',
+                                ng-model='vm.state.hvacMode', ng-change='vm.publishState()', value='off')
+                                label(for='hvac-off') Off
+
+
+
+        script(src="https://code.jquery.com/jquery-2.1.1.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js")
+        script(src="http://cdn.pubnub.com/pubnub.min.js")
+
+        script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js')
+
+        script(src='/client.js')

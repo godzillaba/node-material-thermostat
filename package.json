@@ -1,0 +1,19 @@
+{
+  "name": "nhc",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Henry Arneson",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "ds18x20": "^0.2.0",
+    "express": "^4.14.0",
+    "pi-gpio": "0.0.8",
+    "pubnub": "^4.0.6",
+    "pug": "^2.0.0-beta5"
+  }
+}
