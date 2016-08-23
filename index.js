@@ -1,11 +1,11 @@
 var hvac = require('./hvac.js');
 var pnHelper = require('./pubnubHelper.js');
-var expressServer = require('./expressServer.js')
+var expressServer = require('./expressServer.js');
+var config = require('config');
 
 var currentTemp = null;
 
 setInterval(function() {
-    console.log(hvac.hvacMode);
     hvac.checkTemp(function(err, temp) {
         if (currentTemp != temp) {
             currentTemp = temp;
@@ -15,7 +15,7 @@ setInterval(function() {
             });
         };
     });
-}, 3000);
+}, config.get('hvac').pollInterval);
 
 pnHelper.on("stateChange", function(ev) {
     var attrs = ev.attributes;

@@ -17,8 +17,8 @@ app.controller('appController', function($scope) {
 
     vm.publish = function(message) {
         pubnub.publish({
-            channel : "nhc-rtc",
-            message : message
+            channel: "nhc-rtc",
+            message: message
         });
     }
 
@@ -62,3 +62,11 @@ app.controller('appController', function($scope) {
     });
 
 });
+
+app.filter("capitalize", function() {
+    return function(str) {
+        return str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+            return letter.toUpperCase();
+        });
+    }
+})

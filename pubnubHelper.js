@@ -1,12 +1,13 @@
 var PubNub = require('pubnub');
+var config = require('config').get('pubnub');
 
 pubnub = new PubNub({
-    publishKey: "pub-c-ad62656b-7dc1-45f3-8f74-4135ee8d0eb4",
-    subscribeKey: "sub-c-a7fd2c00-65b3-11e6-9898-0619f8945a4f"
+    publishKey: config.publishKey,
+    subscribeKey: config.subscribeKey
 });
 
 pubnub.subscribe({
-    channels: ["nhc-rtc"]
+    channels: [config.channel]
 });
 
 exports.emit = function(eventType, eventAttrs) {
@@ -17,7 +18,7 @@ exports.emit = function(eventType, eventAttrs) {
         }
     };
     pubnub.publish({
-        channel: "nhc-rtc",
+        channel: config.channel,
         message: message
     });
 }

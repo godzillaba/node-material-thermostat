@@ -1,0 +1,20 @@
+{
+    "expressServer": {
+        "port": 8080,
+        "precompilePug": true
+    },
+    "hvac": {
+        "hvacPins": {
+            "fan": 40,
+            "compressor": 22,
+            "heat": 18
+        },
+        "fahrenheit": true,
+        "pollInterval": 10000
+    },
+    "pubnub": {
+        "publishKey": "pub-c-ad62656b-7dc1-45f3-8f74-4135ee8d0eb4",
+        "subscribeKey": "sub-c-a7fd2c00-65b3-11e6-9898-0619f8945a4f",
+        "channel": "nhc-rtc"
+    }
+}

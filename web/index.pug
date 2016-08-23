@@ -51,23 +51,10 @@ html(lang='en')
                     .card
                         .card-content
                             span.card-title HVAC Mode
-                            p
-                                input(name='hvac-mode-group', type='radio', id='hvac-auto',
-                                ng-model='vm.state.hvacMode', ng-change='vm.publishState()', value='auto')
-                                label(for='hvac-auto') Auto
-                            p
-                                input(name='hvac-mode-group', type='radio', id='hvac-cool',
-                                ng-model='vm.state.hvacMode', ng-change='vm.publishState()', value='cool')
-                                label(for='hvac-cool') Cool
-                            p
-                                input(name='hvac-mode-group', type='radio', id='hvac-heat',
-                                ng-model='vm.state.hvacMode', ng-change='vm.publishState()', value='heat')
-                                label(for='hvac-heat') Heat
-                            p
-                                input(name='hvac-mode-group', type='radio', id='hvac-off',
-                                ng-model='vm.state.hvacMode', ng-change='vm.publishState()', value='off')
-                                label(for='hvac-off') Off
-
+                            p(ng-repeat="mode in ['auto', 'cool', 'heat', 'off']")
+                                input(name='hvac-mode-group', type='radio', id='hvac-{{ mode }}',
+                                ng-model='vm.state.hvacMode', ng-change='vm.publishState()', value='{{ mode }}')
+                                label(for='hvac-{{ mode }}') {{ mode | capitalize }}
 
 
         script(src="https://code.jquery.com/jquery-2.1.1.min.js")
